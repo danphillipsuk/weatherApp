@@ -2,7 +2,7 @@
   "name": "weatherapp",
   "version": "1.0.0",
   "description": "",
-  "private": "true",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
@@ -17,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2"
@@ -26,8 +27,8 @@
   },
   "homepage": "https://github.com/dtp77/weatherApp#readme",
   "dependencies": {
-    "html-webpack-plugin": "^5.5.0",
     "lodash": "^4.17.21",
     "save-dev": "^0.0.1-security"
-  }
+  },
+  "main": "webpack.config.js"
 }

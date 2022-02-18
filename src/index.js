@@ -1,4 +1,7 @@
 import _ from 'lodash';
 import './style.css';
+import { getWeather } from './weatherAPI.js';
 
-console.log("hello world")
+// getWeather();
+
+console.log("hello from index.js")
