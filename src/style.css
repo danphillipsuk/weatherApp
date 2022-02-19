@@ -3,5 +3,59 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-  --darkGrey: rgb(61, 61, 61);
+  --darkGrey: #3d3d3d;
+  --cloudy: url('http://openweathermap.org/img/wn/04d@2x.png') no-repeat;
+  font-family: Arial;
+}
+
+.content {
+
+}
+
+#currentWeather {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+#currentWeather {
+  width: 100%;
+}
+
+#currentWeather #detail {
+  width: 40%;
+  
+}
+
+#currentWeather #date {
+  font-size: .8em;
+}
+
+#currentWeather #city {
+  font-size: 2em;
+  margin-top: 140px;
+}
+
+#currentWeather #temp {
+  font-size: 6em;
+}
+
+#currentWeather #temp span {
+  font-size: 20px;
+}
+
+#currentWeather .warning {
+  background: red;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.thunderstorm {
+  background: url('http://openweathermap.org/img/wn/11d@4x.png') no-repeat;
+  background-color: azure;
+  background-position: center top;
 }
