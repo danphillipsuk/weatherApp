@@ -5,16 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-  <div class="content">
+  <div id="content">
     <section id="currentWeather">
-      <p id ="date">Friday 13th March 2020</p>
-      <h1 id="city"></h1>
-      <h2 id="temp"><span>&#8451;</span></h2>
-      <h3 id="current"></h3>
-      <h4 id="wind">SW 17km/hr</h4>
-      <h5 id ="sunset"></h5>
+      <ul>
+
+        <li id="city"></li>
+        <li id="change">Change &#9662;</li>
+        <li id="current"></li>
+        <li id="temp"><span>&#8451;</span></li>
+        <li id="wind"><span id="windSpan"></span></li>
+        <li id="feelsLike" class="addend">Feels Like<span id="flSpan"></span></li>
+        <li id="humidity" class="addend">Humidity<span id="humSpan"></span></li>
+        <li id="uV" class="addend">UV Index<span id="uvSpan"></span></li>
+        <li id="visibility" class="addend">Visibility<span id="vSpan"></span></li>
+        <li id="timeToSun"></li>
+        <!-- <li id ="sunrise" class="sun"><span id="srSpan"></span></li>
+        <li id ="sunset" class="sun"><span id="ssSpan"></span></li> -->
+
+      </ul>
     </section>
   </div>
 </body>

@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/dtp77/weatherApp#readme",
   "dependencies": {
+    "date-fns": "^2.28.0",
     "lodash": "^4.17.21",
     "save-dev": "^0.0.1-security"
   },

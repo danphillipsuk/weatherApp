@@ -5,57 +5,206 @@
   list-style-type: none;
   --darkGrey: #3d3d3d;
   --cloudy: url('http://openweathermap.org/img/wn/04d@2x.png') no-repeat;
-  font-family: Arial;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-.content {
+body {
+
+}
+
+#content {
+  width: 100%;
 
 }
 
 #currentWeather {
-  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
+  color:rgb(49, 49, 49);
+  background-position: center 65px;
+}
+
+#currentWeather ul {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#change {
+  flex-basis: 100%;
+  font-size: .8em;
   text-align: center;
 }
 
-#currentWeather {
-  width: 100%;
+#city { 
+  margin: 5px 0;
+  font-size: 1.5em;
+  font-weight: 500;
+  flex-basis: 100%;
+  text-align: center;
+  text-shadow: 1px 1px 2px #b9b9b9;
 }
 
-#currentWeather #detail {
-  width: 40%;
-  
-}
-
-#currentWeather #date {
-  font-size: .8em;
-}
-
-#currentWeather #city {
-  font-size: 2em;
-  margin-top: 140px;
-}
-
-#currentWeather #temp {
+#temp {
   font-size: 6em;
+  font-weight: 400;
+  flex-basis: 100%;
+  text-align: center;
+  text-shadow: 1px 1px 3px #8a8a8a;
 }
 
-#currentWeather #temp span {
-  font-size: 20px;
+#temp span {
+  font-size: .3em;
 }
 
-#currentWeather .warning {
-  background: red;
-  padding: 10px;
-  margin: 10px 0;
+#current {
+  text-transform: capitalize;
+  margin-top: 170px;
+  flex-basis: 100%;
+  font-size: 1.1em;
+  text-align: center;
 }
 
-.thunderstorm {
+#wind {
+  display: flex;
+  flex-basis: 100%;
+  font-size: .8em;
+  margin-bottom: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+#wind img {
+  width: 30px;
+  margin-right: 5px;
+  align-items: center;
+}
+
+.addend {
+  width: 25%;
+  font-size: .8em;
+  text-align: center;
+}
+
+.addend span, .sun span {
+  display: block;
+  margin-top: 5px;
+  font-size: 1.1em;
+  font-weight: 600;;
+}
+
+.sun {
+  margin-top: 35px;
+  width: 50%;
+  text-align: center;
+}
+
+#timeToSun {
+  margin: 30px 0 10px 0;
+  padding: 20px 30px;
+  width: 100%;
+  text-align: center;
+  font-size: .8em;
+  font-weight: 600;
+  border-radius: 5px;
+  background:rgba(238, 238, 238, .2);
+  color: rgb(61, 61, 61);
+}
+
+
+.night {
+  background: rgb(179, 179, 179);
+}
+.coldAndClear {
+  background: rgb(213,247,252);
+  background: linear-gradient(201deg, rgba(213,247,252,1) 0%, rgba(65,184,240,1) 100%); 
+}
+
+.warmAndClear {
+  background: rgb(248,252,213);
+  background: linear-gradient(201deg, rgba(248,252,213,1) 0%, rgba(242,209,72,1) 100%); 
+}
+
+.cloudy {
+  background: rgb(181,221,251);
+  background: linear-gradient(201deg, rgba(181,221,251,1) 0%, rgba(147,147,148,1) 100%); 
+}
+
+.thunderstormDay {
   background: url('http://openweathermap.org/img/wn/11d@4x.png') no-repeat;
-  background-color: azure;
-  background-position: center top;
 }
+
+.drizzleDay {
+  background: url('http://openweathermap.org/img/wn/09d@4x.png') no-repeat;
+}
+
+.rainDay {
+  background: url('http://openweathermap.org/img/wn/10d@4x.png') no-repeat;
+}
+
+.snowDay {
+  background: url('http://openweathermap.org/img/wn/13d@4x.png') no-repeat;
+}
+
+.clearDay {
+  background: url('http://openweathermap.org/img/wn/01d@4x.png') no-repeat;
+}
+
+.atmosphereDay {
+  background: url('http://openweathermap.org/img/wn/50d@4x.png') no-repeat;
+}
+
+.clouds1Day {
+  background: url('http://openweathermap.org/img/wn/02d@4x.png') no-repeat;
+}
+
+.clouds2Day {
+  background: url('http://openweathermap.org/img/wn/03d@4x.png') no-repeat;
+}
+
+.clouds3Day {
+  background: url('http://openweathermap.org/img/wn/04d@4x.png') no-repeat;
+}
+
+/* Night */
+.thunderstormNight {
+  background: url('http://openweathermap.org/img/wn/11n@4x.png') no-repeat;
+}
+
+.drizzleNight {
+  background: url('http://openweathermap.org/img/wn/09n@4x.png') no-repeat;
+}
+
+.rainNight {
+  background: url('http://openweathermap.org/img/wn/10n@4x.png') no-repeat;
+}
+
+.snowNight {
+  background: url('http://openweathermap.org/img/wn/13n@4x.png') no-repeat;
+}
+
+.clearNight {
+  background: url('http://openweathermap.org/img/wn/01n@4x.png') no-repeat;
+}
+
+.atmosphereNight {
+  background: url('http://openweathermap.org/img/wn/50n@4x.png') no-repeat;
+}
+
+.clouds1Night {
+  background: url('http://openweathermap.org/img/wn/02n@4x.png') no-repeat;
+}
+
+.clouds2Night {
+  background: url('http://openweathermap.org/img/wn/03n@4x.png') no-repeat;
+}
+
+.clouds3Night {
+  background: url('http://openweathermap.org/img/wn/04n@4x.png') no-repeat;
+}
+
+

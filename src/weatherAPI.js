@@ -3,6 +3,7 @@ import { currentWeather } from './index.js';
 let today;
 let oneCall;
 let city;
+let country;
 
 async function getWeather (location) {
 
@@ -17,7 +18,7 @@ async function getWeather (location) {
     const lat = today.coord.lat; 
     const lon = today.coord.lon;
     city = today.name;
-    console.log(today)
+    country = today.sys.country;
 
     // Use lat/lon cordinates from first fetch to pass into oneCall service, giving us current and forecast data
     const secondResponse = await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&APPID=5a75251970a67885f4e3d704fe65eed0`, { mode: 'cors' });
@@ -28,8 +29,8 @@ async function getWeather (location) {
   }
 }
 
-getWeather().then(function () {
-  currentWeather(city, oneCall);
+getWeather("Rothbury").then(function () {
+  currentWeather(city, oneCall, country);
 })
 
 export { getWeather }
