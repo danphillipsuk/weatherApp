@@ -35,10 +35,10 @@ function timingCalcs (todaysWeather) {
     }
 
   } else {
-    const until = todaysWeather.sunrise -currentTime;
+    const until = todaysWeather.tomorrowSunrise - currentTime;
     let hours = Math.floor(until/3600);
     let minutes = Math.floor(until % 3600 / 60);
-    const timeOffsetR = todaysWeather.sunrise + todaysWeather.timezone ;
+    const timeOffsetR = todaysWeather.tomorrowSunrise + todaysWeather.timezone ;
     const sunR = new Date(timeOffsetR *1000);
     const readableTime = format(sunR, 'HH:mm');
 

@@ -6,7 +6,7 @@ import { next24hours } from './carousel/next24hours'
 const buildApp = (data, hourlyArray) => {
   
   currentWeatherSection(data);
-  // next24hours(hourlyArray);
+
 
 }
 
