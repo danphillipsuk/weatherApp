@@ -1,8 +1,8 @@
 import format from 'date-fns/format'
 
-const todaysWeather = JSON.parse(localStorage.getItem("todaysForecast"));
+// const todaysWeather = JSON.parse(localStorage.getItem("todaysForecast"));
 
-function timingCalcs () {
+function timingCalcs (todaysWeather) {
 
   // Get todays date/time
   const todaysDate = new Date();
@@ -14,7 +14,7 @@ function timingCalcs () {
     dayOrNight = 'Day';
   } else {
     dayOrNight = 'Night';
-  }
+  } 
 
   // Produce time to sunrise/sunset string
   if (dayOrNight === "Day") {
@@ -24,7 +24,7 @@ function timingCalcs () {
     const timeOffsetS = todaysWeather.sunset + todaysWeather.timezone ;
     const sunS = new Date(timeOffsetS *1000);
 
-    const readableTime = format(sunS, 'HH:m');
+    const readableTime = format(sunS, 'HH:mm');
 
     if (hours === 0) {
       timeToSun = `The sun will set in ${minutes} minutes at ${readableTime} pm.`
@@ -40,7 +40,7 @@ function timingCalcs () {
     let minutes = Math.floor(until % 3600 / 60);
     const timeOffsetR = todaysWeather.sunrise + todaysWeather.timezone ;
     const sunR = new Date(timeOffsetR *1000);
-    const readableTime = format(sunR, 'HH:m');
+    const readableTime = format(sunR, 'HH:mm');
 
     if (hours === 0) {
       timeToSun = `The sun will rise in ${minutes} minutes at ${readableTime} am.`
@@ -53,7 +53,7 @@ function timingCalcs () {
   return { dayOrNight, timeToSun }
 }
 
-function windDesc () {
+function windDesc (todaysWeather) {
   // Wind speed, direction and gusts
   let num = todaysWeather.windDeg;
 

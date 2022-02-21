@@ -3,13 +3,11 @@ import windy from './assets/windy.png';
 import { timingCalcs, windDesc } from './functions';
 import { getWeather } from '../weatherAPI';
 
-const currentWeatherSection = () => {
-  
-  const todaysWeather = JSON.parse(localStorage.getItem("todaysForecast"));
-  const dayOrNight = timingCalcs().dayOrNight;
-  const timeToSun = timingCalcs().timeToSun;
+const currentWeatherSection = (todaysWeather) => {
 
-
+  // const todaysWeather = JSON.parse(localStorage.getItem("todaysForecast"));
+  const dayOrNight = timingCalcs(todaysWeather).dayOrNight;
+  const timeToSun = timingCalcs(todaysWeather).timeToSun;
   const overallContent = document.getElementById("content");
   const overallWeather = document.getElementById("currentWeather");
   const weatherID = todaysWeather.weatherID;
@@ -37,7 +35,7 @@ const currentWeatherSection = () => {
   if (dayOrNight === 'Night') {
     overallContent.classList.add("night")
   } else
-  if (todaysWeather.temperature < 4 && weatherID === 800) {
+  if (todaysWeather.temperature < 8 && weatherID === 800) {
     overallContent.classList.add("coldAndClear")
   } else if (todaysWeather.temperature > 4 && weatherID === 800) {
     overallContent.classList.add("warmAndClear")
@@ -70,7 +68,7 @@ const currentWeatherSection = () => {
   const currentWind1 = document.getElementById("wind");
 
   const currentWind = document.getElementById("windSpan");
-  currentWind.innerText = windDesc();
+  currentWind.innerText = windDesc(todaysWeather);
   currentWind1.prepend(windIcon);
 
   // Current weather description

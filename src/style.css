@@ -20,12 +20,12 @@ body {
 #currentWeather {
   max-width: 800px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 30px 30px 0 30px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   color:rgb(49, 49, 49);
-  background-position: center 65px;
+  background-position: center 45px;
 }
 
 #currentWeather ul {
@@ -73,6 +73,14 @@ body {
   text-shadow: 1px 1px 2px #b9b9b9;
 }
 
+#current {
+  text-transform: capitalize;
+  margin-top: 115px;
+  flex-basis: 100%;
+  font-size: 1.1em;
+  text-align: center;
+}
+
 #temp {
   font-size: 6em;
   font-weight: 400;
@@ -93,13 +101,6 @@ body {
   font-size: .2em;
 }
 
-#current {
-  text-transform: capitalize;
-  margin-top: 145px;
-  flex-basis: 100%;
-  font-size: 1.1em;
-  text-align: center;
-}
 
 #wind {
   display: flex;
@@ -241,3 +242,137 @@ body {
 }
 
 
+/* Hourly Carousel */
+#hourlyCarousel {
+  padding: 1.5rem 3em;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#hourlyCarousel button {
+  width: 50%;
+  font-size: .8rem;
+  padding: 15px;
+  border: none;
+  background: rgba(182, 182, 182, 0.1);
+  cursor: pointer;
+}
+
+#hourlyCarousel button.active {
+  background: rgba(10, 228, 94, 0.3);
+  cursor: default;
+}
+
+#hourlyContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul#hourlyContainer li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  background-position: right -5px !important;
+}
+
+#hourlyContainer li span{
+}
+
+#hourlyContainer li span.time {
+  font-size: .9rem;
+  font-weight: 600;
+  width: 20%;
+}
+
+#hourlyContainer li span.temp {
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 20%;
+}
+
+#hourlyContainer li span.desc {
+  text-transform: capitalize;
+  font-size: .8rem;
+}
+
+ul#hourlyContainer li.thunderstormDay {
+  background: url('http://openweathermap.org/img/wn/11d.png') no-repeat;
+}
+
+ul#hourlyContainer li.drizzleDay {
+  background: url('http://openweathermap.org/img/wn/09d.png') no-repeat;
+}
+
+ul#hourlyContainer li.rainDay {
+  background: url('http://openweathermap.org/img/wn/10d.png') no-repeat;
+}
+
+ul#hourlyContainer li.snowDay {
+  background: url('http://openweathermap.org/img/wn/13d.png') no-repeat;
+}
+
+ul#hourlyContainer li.clearDay {
+  background: url('http://openweathermap.org/img/wn/01d.png') no-repeat;
+}
+
+ul#hourlyContainer li.atmosphereDay {
+  background: url('http://openweathermap.org/img/wn/50d.png') no-repeat;
+}
+
+ul#hourlyContainer li.clouds1Day {
+  background: url('http://openweathermap.org/img/wn/02d.png') no-repeat;
+}
+
+ul#hourlyContainer li.clouds2Day {
+  background: url('http://openweathermap.org/img/wn/03d.png') no-repeat;
+}
+
+ul#hourlyContainer li.clouds3Day {
+  background: url('http://openweathermap.org/img/wn/04d.png') no-repeat;
+}
+
+/* Night Icons */
+
+ul#hourlyContainer li.thunderstormNight {
+  background: url('http://openweathermap.org/img/wn/11n.png') no-repeat;
+}
+
+ul#hourlyContainer li.drizzleNight {
+  background: url('http://openweathermap.org/img/wn/09n.png') no-repeat;
+}
+
+ul#hourlyContainer li.rainNight {
+  background: url('http://openweathermap.org/img/wn/10n.png') no-repeat;
+}
+
+ul#hourlyContainer li.snowNight {
+  background: url('http://openweathermap.org/img/wn/13n.png') no-repeat;
+}
+
+ul#hourlyContainer li.clearNight {
+  background: url('http://openweathermap.org/img/wn/01n.png') no-repeat;
+}
+
+ul#hourlyContainer li.atmosphereNight {
+  background: url('http://openweathermap.org/img/wn/50n.png') no-repeat;
+}
+
+ul#hourlyContainer li.clouds1Night {
+  background: url('http://openweathermap.org/img/wn/02n.png') no-repeat;
+}
+
+ul#hourlyContainer li.clouds2Night {
+  background: url('http://openweathermap.org/img/wn/03n.png') no-repeat;
+}
+
+ul#hourlyContainer li.clouds3Night {
+  background: url('http://openweathermap.org/img/wn/04n.png') no-repeat;
+}
+
+#dailyContainer {
+  display: none;
+}
