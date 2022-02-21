@@ -34,10 +34,34 @@ body {
   flex-wrap: wrap;
 }
 
-#change {
+#changeCity {
   flex-basis: 100%;
+  margin: 0 auto;
   font-size: .8em;
+  justify-content: center;
+  padding: 5px 10px;
+  cursor: pointer;
   text-align: center;
+}
+
+#changeCity:hover {
+  font-weight: 600;
+  border-bottom: solid 1px rgb(145, 145, 145);
+}
+
+#changeCity span {
+  width: 80%;
+  position: absolute;
+  display:block;
+  margin-top: .3rem;
+  display: none;
+}
+
+#changeCity span input {
+  width: 100%;
+  padding: 10px;
+  border-radius: .5rem;
+  border: none;
 }
 
 #city { 
@@ -57,13 +81,21 @@ body {
   text-shadow: 1px 1px 3px #8a8a8a;
 }
 
+#minMax {
+  width: 100%;
+  font-size: .8em;
+  text-align: center;
+  margin:0 0 20px 0;
+  font-weight: 600;
+}
+
 #temp span {
-  font-size: .3em;
+  font-size: .2em;
 }
 
 #current {
   text-transform: capitalize;
-  margin-top: 170px;
+  margin-top: 145px;
   flex-basis: 100%;
   font-size: 1.1em;
   text-align: center;
@@ -76,6 +108,7 @@ body {
   margin-bottom: 40px;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
 }
 
 #wind img {
