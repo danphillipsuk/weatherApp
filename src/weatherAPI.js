@@ -1,7 +1,8 @@
 import { propertyOf } from "lodash";
 import { buildApp } from './index.js';
 import { timingCalcs } from './currentWeather/functions';
-import { next24hours } from './carousel/next24hours'
+import { next24hours } from './carousel/next24hours';
+import { sevenDays} from './carousel/sevenDays';
 
 let today;
 let oneCall;
@@ -25,11 +26,12 @@ async function getWeather (location) {
     oneCall = await secondResponse.json();
 
   } catch(err) {
+    console.log("Sorry, we're haviong trouble")
     console.log(err)
   }
 }
 
-getWeather("London").then(function () {
+getWeather("cape town").then(function () {
 
   const todaysWeatherFactory = (
     city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust ) => {
@@ -40,9 +42,12 @@ getWeather("London").then(function () {
     oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.daily[1].sunrise, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust);
 
     const hourlyArray = oneCall.hourly;
+    const daily = oneCall.daily;
     
   buildApp(todaysForecast);
   next24hours(todaysForecast, hourlyArray, todaysForecast.timezone);
+  sevenDays(daily);
+
   return;
 })
 

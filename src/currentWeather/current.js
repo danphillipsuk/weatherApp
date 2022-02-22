@@ -5,7 +5,6 @@ import { getWeather } from '../weatherAPI';
 
 const currentWeatherSection = (todaysWeather) => {
 
-  // const todaysWeather = JSON.parse(localStorage.getItem("todaysForecast"));
   const dayOrNight = timingCalcs(todaysWeather).dayOrNight;
   const timeToSun = timingCalcs(todaysWeather).timeToSun;
   const overallContent = document.getElementById("content");
@@ -42,6 +41,7 @@ const currentWeatherSection = (todaysWeather) => {
   } else if (weatherID > 800 || weatherID < 800) {
     overallContent.classList.add("cloudy")
   }
+
 
   // Date
   // const today = format(todaysDate, 'eeee do LLLL yyyy');
@@ -91,9 +91,6 @@ const currentWeatherSection = (todaysWeather) => {
   const humidity = document.getElementById("humSpan");
   humidity.innerHTML = `${todaysWeather.humidity}%`
 
-  // Time until sunrise or sunset
-  const sunAction = document.getElementById("timeToSun");
-  sunAction.innerText = timeToSun;
 
 }
 

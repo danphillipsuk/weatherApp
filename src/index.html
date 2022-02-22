@@ -11,6 +11,7 @@
 </head>
 <body>
   <div id="content">
+    <div id="positionWrapper">
     <section id="currentWeather">
       <ul>
 
@@ -24,19 +25,30 @@
         <li id="humidity" class="addend">Humidity<span id="humSpan"></span></li>
         <li id="uV" class="addend">UV Index<span id="uvSpan"></span></li>
         <li id="visibility" class="addend">Visibility<span id="vSpan"></span></li>
-        <li id="timeToSun"></li>
         <!-- <li id ="sunrise" class="sun"><span id="srSpan"></span></li>
         <li id ="sunset" class="sun"><span id="ssSpan"></span></li> -->
 
       </ul>
     </section>
+
     <section id="hourlyCarousel">
       <button id="hourButton" class="active">Next 24 Hours</button>
       <button id="dayButton">Next 7 Days</button>
-      <ul id="hourlyContainer"></ul>
+
+      <ul id="hourlyContainer">
+
+        <div id="slideNav">
+          <span class="dot" id="firstSlide" value="1"></span>
+          <span class="dot" id="secondSlide" value="2"></span>
+          <span class="dot" id="thirdSlide" value="3""></span>
+        </div>
+
+      </ul>
+
       <ul id="dailyContainer"><li>hello</li></ul>
 
     </section>
+</div>
   </div>
 </body>
 </html>

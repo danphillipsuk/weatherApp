@@ -4,64 +4,143 @@ const next24hours = (todaysWeather, data, offset) => {
 
   console.log(data)
 
+
+
+  const one = convertToAMPM(data[1].dt, offset);
+  const two = convertToAMPM(data[1].dt + 25200, offset);
+  const three = convertToAMPM(data[1].dt + 28800, offset);
+  const four = convertToAMPM(data[1].dt + 54000, offset);
+  const five = convertToAMPM(data[1].dt + 57600, offset);
+  const six = convertToAMPM(data[1].dt + 82800, offset);
+
+  const firstTab = `${one} - ${two}`;
+  const secondTab = `${three} - ${four}`;
+  const thirdTab = `${five} - ${six}`;
+
+  const firstTabInsert = document.getElementById("firstSlide");
+  firstTabInsert.innerText = firstTab;
+  const secondTabInsert = document.getElementById("secondSlide");
+  secondTabInsert.innerText = secondTab;
+  const thirdTabInsert = document.getElementById("thirdSlide");
+  thirdTabInsert.innerText = thirdTab;
+
+
+
+
+
+
+
   function convertToAMPM (num, offset) {
     const rawtime = num + offset;
     const newtime = new Date(rawtime * 1000);
-    const finalTime = format((newtime), 'h a');
+    const finalTime = format((newtime), 'ha');
     return finalTime;
   }
 
-  function determineNightorDay (num) {
-    let final;
-    const todaysSunset = todaysWeather.sunset;
-    const tomorrowSunrise = todaysWeather.tomorrowSunrise;
-    if (num < todaysSunset || num > tomorrowSunrise) {
-      final = "Day";
-    } else {
-      final = "Night";
-    }
-    return final;
+  function eightHourBlock (start, finish, index1) {
+    const eightHourContainer = document.createElement("div");
+    eightHourContainer.classList.add("slide");
+  
+    data.slice(start, finish).forEach((item, index) => {
+      const time = convertToAMPM (item.dt, offset);
+      const relIndex = index1 + index;
+  
+      const singleHour = document.createElement("li");
+      singleHour.innerHTML = `
+        <span class="time">${time}</span>
+        <span class="temp">${Math.round(data[relIndex].temp)}&#8451;</span>
+        <span class="desc">${data[relIndex].weather[0].description}</span>`;
+
+        const weatherID = data[relIndex].weather[0].id;
+        if (weatherID >= 200 && weatherID <= 232) {
+          singleHour.classList.add(`thunderstorm`);
+        } else if (weatherID >= 300 && weatherID <= 321 || weatherID >= 520 && weatherID <= 531 ) {
+          singleHour.classList.add(`drizzle`);
+        } else if (weatherID >= 500 && weatherID <= 504) {
+          singleHour.classList.add(`rain`)
+        } else if (weatherID >= 600 && weatherID <= 622 || weatherID == 511) {
+          singleHour.classList.add(`snow`)
+        } else if (weatherID >= 701 && weatherID <= 781) {
+          singleHour.classList.add(`atmosphere`)
+        } else if (weatherID === 800) {
+          singleHour.classList.add(`clear`)
+        } else if (weatherID === 801) {
+          singleHour.classList.add(`clouds1`)
+        } else if (weatherID === 802) {
+          singleHour.classList.add(`clouds2`)
+        } else if (weatherID >= 803 && weatherID <= 804) {
+          singleHour.classList.add(`clouds3`)
+        }
+
+      
+      eightHourContainer.append(singleHour);
+      const poop = document.getElementById("hourlyContainer");
+      poop.appendChild(eightHourContainer);
+    })
+  
   }
 
+  eightHourBlock(1,9, 1);
+  eightHourBlock(9,17, 9);
+  eightHourBlock(17,25, 17);
 
-  data.slice(1,25).forEach((item,index) => {
+  let slideIndex = 1;
 
-    const time = convertToAMPM (item.dt, offset);
-    const day = determineNightorDay(item.dt);
+  showSlides(slideIndex);
+  
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "flex";
+    dots[slideIndex-1].className += " active";
+  } 
 
-    const singleHour = document.createElement("li");
-    singleHour.innerHTML = `
-      <span class="time">${time}</span>
-      <span class="temp">${Math.round(data[index+1].temp)}&#8451;</span>
-      <span class="desc">${data[index+1].weather[0].description}</span>`;
-
-      const weatherID = data[index+1].weather[0].id;
-      if (weatherID >= 200 && weatherID <= 232) {
-        singleHour.classList.add(`thunderstorm${day}`);
-      } else if (weatherID >= 300 && weatherID <= 321 || weatherID >= 520 && weatherID <= 531 ) {
-        singleHour.classList.add(`drizzle${day}`);
-      } else if (weatherID >= 500 && weatherID <= 504) {
-        singleHour.classList.add(`rain${day}`)
-      } else if (weatherID >= 600 && weatherID <= 622 || weatherID == 511) {
-        singleHour.classList.add(`snow${day}`)
-      } else if (weatherID >= 701 && weatherID <= 781) {
-        singleHour.classList.add(`atmosphere${day}`)
-      } else if (weatherID === 800) {
-        singleHour.classList.add(`clear${day}`)
-      } else if (weatherID === 801) {
-        singleHour.classList.add(`clouds1${day}`)
-      } else if (weatherID === 802) {
-        singleHour.classList.add(`clouds2${day}`)
-      } else if (weatherID >= 803 && weatherID <= 804) {
-        singleHour.classList.add(`clouds3${day}`)
-      }
-
-    
-
-    const poop = document.getElementById("hourlyContainer");
-    poop.append(singleHour);
-
+  document.getElementById('firstSlide').addEventListener("click", () => {
+    showSlides(slideIndex = 1);
   })
+
+  document.getElementById('secondSlide').addEventListener("click", () => {
+    showSlides(slideIndex = 2);
+  })
+
+  document.getElementById('thirdSlide').addEventListener("click", () => {
+    showSlides(slideIndex = 3);
+  })
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const hourly = document.getElementById("hourlyContainer");
   const daily = document.getElementById("dailyContainer");
@@ -82,6 +161,8 @@ const next24hours = (todaysWeather, data, offset) => {
     hourButton.classList.add("active");
   
   })
+
+
 
 }
 
