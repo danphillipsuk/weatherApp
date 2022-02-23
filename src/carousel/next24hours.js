@@ -1,9 +1,12 @@
 import format from 'date-fns/format'
 
-const next24hours = (todaysWeather, data, offset) => {
+const next24hours = (data, offsetStore) => {
 
-  console.log(data)
 
+
+  // const data = JSON.parse(localStorage.getItem("hours"));
+  // const offsetStore = JSON.parse(localStorage.getItem("today"));
+  const offset = offsetStore.timezone;
 
 
   const one = convertToAMPM(data[1].dt, offset);
@@ -13,9 +16,12 @@ const next24hours = (todaysWeather, data, offset) => {
   const five = convertToAMPM(data[1].dt + 57600, offset);
   const six = convertToAMPM(data[1].dt + 82800, offset);
 
+  
+
   const firstTab = `${one} - ${two}`;
   const secondTab = `${three} - ${four}`;
   const thirdTab = `${five} - ${six}`;
+
 
   const firstTabInsert = document.getElementById("firstSlide");
   firstTabInsert.innerText = firstTab;
@@ -40,6 +46,8 @@ const next24hours = (todaysWeather, data, offset) => {
   function eightHourBlock (start, finish, index1) {
     const eightHourContainer = document.createElement("div");
     eightHourContainer.classList.add("slide");
+    eightHourContainer.id=`slide${index1}`;
+    
   
     data.slice(start, finish).forEach((item, index) => {
       const time = convertToAMPM (item.dt, offset);
@@ -80,14 +88,23 @@ const next24hours = (todaysWeather, data, offset) => {
   
   }
 
+  // let parent = document.getElementById("slide1");
+  
+  // function empty(element) {
+  //   while(element.firstElementChild) {
+  //     element.firstElementChild.remove();
+  //   }
+  // }
+  // if (parent) {
+  // empty(parent);
+  // }
   eightHourBlock(1,9, 1);
   eightHourBlock(9,17, 9);
   eightHourBlock(17,25, 17);
 
-  let slideIndex = 1;
-
-  showSlides(slideIndex);
   
+  let slideIndex = 1;
+  showSlides(slideIndex);
   function showSlides(n) {
     let i;
     let slides = document.getElementsByClassName("slide");
@@ -104,6 +121,7 @@ const next24hours = (todaysWeather, data, offset) => {
     dots[slideIndex-1].className += " active";
   } 
 
+
   document.getElementById('firstSlide').addEventListener("click", () => {
     showSlides(slideIndex = 1);
   })
@@ -116,16 +134,6 @@ const next24hours = (todaysWeather, data, offset) => {
     showSlides(slideIndex = 3);
   })
   
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,14 +1,16 @@
 import format from 'date-fns/format'
 import windy from './assets/windy.png';
-import { timingCalcs, windDesc } from './functions';
+import { timingCalcs, sunTimes, windDesc } from './functions';
 import { getWeather } from '../weatherAPI';
 
 const currentWeatherSection = (todaysWeather) => {
 
+  // const todaysWeather = JSON.parse(localStorage.getItem("today"));
+
   const dayOrNight = timingCalcs(todaysWeather).dayOrNight;
-  const timeToSun = timingCalcs(todaysWeather).timeToSun;
-  const overallContent = document.getElementById("content");
-  const overallWeather = document.getElementById("currentWeather");
+  
+  const overallContent = document.body;
+  const overallWeather = document.querySelector(".currentWeather");
   const weatherID = todaysWeather.weatherID;
 
   if (weatherID >= 200 && weatherID <= 232) {
@@ -73,7 +75,7 @@ const currentWeatherSection = (todaysWeather) => {
 
   // Current weather description
   const currentWeath = document.getElementById("current");
-  currentWeath.innerText = todaysWeather.description;
+  currentWeath.innerText = `Currently ${todaysWeather.description}`;
 
   // Feels like temp
   const feelsLike = document.getElementById("flSpan");
@@ -89,7 +91,13 @@ const currentWeatherSection = (todaysWeather) => {
 
   // Humidity
   const humidity = document.getElementById("humSpan");
-  humidity.innerHTML = `${todaysWeather.humidity}%`
+  humidity.innerText = `${todaysWeather.humidity}%`
+
+  const sunriseEl = document.getElementById("srSpan");
+  sunriseEl.innerText = sunTimes(todaysWeather.sunrise, todaysWeather.timezone);
+
+  const sunsetEl = document.getElementById("ssSpan");
+  sunsetEl.innerText = sunTimes(todaysWeather.sunset, todaysWeather.timezone);
 
 
 }

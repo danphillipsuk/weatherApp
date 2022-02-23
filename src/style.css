@@ -3,75 +3,93 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-  --darkGrey: #3d3d3d;
   font-family: 'Ubuntu', sans-serif;
-  --maxWidth: 90vw;
 }
 
-html, body, #content {
+/* Page layout for sticky footer */
+html, body, .content {
   height: 100%;
 }
 
-#positionWrapper {
-  max-width: var(--maxWidth);
-  margin: 0 auto;
+body, .content {
+  display: flex;
+  flex-direction: column;
 }
 
-#currentWeather {
-  padding: 30px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  color:rgb(49, 49, 49);
-  background-position: center 40px;
+.currentWeather {
+  flex: 1 0 auto;
 }
 
-#currentWeather ul {
+#hourlyCarousel {
+  flex-shrink: 0;
+}
+
+.content {
+  width: 1080px;
+  margin: auto;
+  padding: 3em;
+  box-shadow: 0 4px 8px 0 rgba(180, 180, 180, 0.2), 0 6px 20px 0 rgba(48, 48, 48, 0.19);
+}
+
+
+/* Current Weather Section */
+.currentWeather {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
+  background-position: center top !important;
+  color:rgb(48, 48, 48);
+}
+
+#currentLeft {
+  width: 80%;
 }
 
 #city { 
-  margin: 5px 0;
-  font-size: 1em;
-  font-weight: 500;
-  flex-basis: 100%;
-  text-shadow: 1px 1px 2px #b9b9b9;
+  font-size: 2em;
+  margin-bottom: .1em;
 }
 
-#current {
-  text-transform: capitalize;
-  margin: 1rem 0 0 0;
-  flex-basis: 100%;
-  font-size: 1.4em;
+#currentLeft input {
+  padding: .5em;
+  border: none;
+  background: none;
+  border-bottom: solid 1px rgb(48, 48, 48);
+  width: 20%;
+}
+
+#currentLeft button {
+  border: none;
+  padding: .3em 1em;
+  border-radius: .3em;
+  margin-left: 1em;
+  cursor: pointer;
+  background: rgb(48, 48, 48);
+  color: #FFF;
 }
 
 #temp {
-  font-size: 4em;
-  font-weight: 400;
-  flex-basis: 100%;
-  text-shadow: 1px 1px 3px #8a8a8a;
+  font-size: 8em;
 }
 
-#minMax {
-  width: 100%;
-  font-size: .8em;
-  font-weight: 600;
+#feelsLike {
+  margin-top: -.3em;
+  font-size: 1em;
+}
+
+#current {
+  font-size: 3em;
+  margin: .5em 0;
 }
 
 #temp span {
-  font-size: .2em;
+  font-size: .3em;
 }
 
-
 #wind {
+  font-size: 2em;
   display: flex;
-  flex-basis: 100%;
-  font-size: .8em;
-  margin: 10px 0 20px 0;
   align-items: center;
-  font-weight: 600;
 }
 
 #wind img {
@@ -80,16 +98,37 @@ html, body, #content {
   align-items: center;
 }
 
-.addend {
-  width: 25%;
-  font-size: .8em;
+#currentRight {
+  width: 20%;
+  text-align: right;
+  font-size: .9em;
+  font-weight: 400;
+}
+
+#currentRight li {
+  display: flex;
+  justify-content: space-between;
+  margin: .3em 0;
+  align-items: center;
+}
+
+#currentRight li span {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+#currentRight > li:nth-child(3) {
+  margin-top: 2.5em;
+}
+
+#currentRight > li:nth-child(6) {
+  margin-top: 2.5em;
 }
 
 
-
 .coldAndClear {
-  background: rgb(43,135,203);
-  background: linear-gradient(201deg, rgba(43,135,203,1) 0%, rgba(146,204,251,1) 100%); 
+  background: rgb(164,244,255);
+  background: linear-gradient(201deg, rgba(164,244,255,1) 0%, rgba(30,120,180,1) 100%); 
 }
 
 .warmAndClear {
@@ -177,26 +216,35 @@ html, body, #content {
 
 
 /* Hourly Carousel */
-#hourlyCarousel {
-  padding: 30px;
-  width: var(--maxWidth);
+.futureForecast {
   display: flex;
-  flex-wrap: wrap;
-  border-top: double 3px rgba(255, 255, 255, 0.2);
+  flex-direction: column;
+  border-top: double 4px rgba(255, 255, 255, 0.2);
+  color:rgb(48, 48, 48);
 }
 
-#hourlyCarousel button {
-  width: 50%;
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin: 2em 0;
+}
+
+.futureForecast button {
+  width: 15em;
   font-size: .8rem;
+  font-weight: 600;
   padding: 10px 15px;
   border: none;
   cursor: pointer;
   background: none;
   border-radius: 5px;
+  border: solid 1px #FFF;
 }
 
-#hourlyCarousel button.active {
-  background:  rgba(250, 250, 250, .7);
+.futureForecast button.active {
+  background:  rgba(250, 250, 250);
   cursor: default;
 }
 
@@ -207,100 +255,106 @@ width: 100%;
 
 /* Nav for 24 Hour Period */
 #slideNav {
-  width: 50%;
-  margin: 0 0 20px 0;
+  width: 100%;
+  margin: 0 auto 3em auto;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: .7em;
 }
 
 .dot {
-  width: 33.3%;
-  padding: 15px 10px 10px 10px;
+  padding: .5em 1em;
   cursor: pointer;
-  border: solid 3px rgba(255, 255, 255, 0);
   border-radius: 3px;
   text-align: center;
-}
-
-.dot.active {
-  background:  rgba(250, 250, 250, .7);
-  transition: .8s;
-}
-
-#hourlyContainer {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-#hourlyContainer div.slide li {
-  width: 12.5%;
-  background-position: center 20px !important;
-  text-align: center;
-  height: 150px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#hourlyContainer li span.time {
-  width: 100%;
-  font-size: 1.1rem;
   font-weight: 600;
 }
 
-#hourlyContainer li span.temp {
+.dot.active {
+  background:  rgb(250, 250, 250);
+  transition: .8s;
+}
+
+#hourlyContainer, #dailyContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#dailyContainer {
+  display: none;
+}
+
+#hourlyContainer li, #dailyContainer li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 150px;
+  background-position: center 20px !important;
+}
+
+#hourlyContainer li {
+  width: 12.5%;
+}
+
+#dailyContainer li {
+  width: 14.28%;
+}
+
+#hourlyContainer li span:nth-child(1), #dailyContainer li span:nth-child(1) {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#hourlyContainer li span:nth-child(2), #dailyContainer li span:nth-child(2)  {
   width: 100%;
   font-size: 2rem;
   font-weight: 400;
   margin-top: 50px;
 }
 
-#hourlyContainer li span.desc {
+#hourlyContainer li span:nth-child(3), #dailyContainer li span:nth-child(3)  {
   width: 100%;
   text-transform: capitalize;
   font-size: .8rem;
 }
 
-ul#hourlyContainer li.thunderstorm {
+ul#hourlyContainer li.thunderstorm, ul#dailyContainer li.thunderstorm {
   background: url('http://openweathermap.org/img/wn/11d.png') no-repeat;
 }
 
-ul#hourlyContainer li.drizzle {
+ul#hourlyContainer li.drizzle, ul#dailyContainer li.drizzle {
   background: url('http://openweathermap.org/img/wn/09d.png') no-repeat;
 }
 
-ul#hourlyContainer li.rain {
+ul#hourlyContainer li.rain, ul#dailyContainer li.rain {
   background: url('http://openweathermap.org/img/wn/10d.png') no-repeat;
 }
 
-ul#hourlyContainer li.snow {
+ul#hourlyContainer li.snow, ul#dailyContainer li.snow {
   background: url('http://openweathermap.org/img/wn/13d.png') no-repeat;
 }
 
-ul#hourlyContainer li.clear {
+ul#hourlyContainer li.clear, ul#dailyContainer li.clear {
   background: url('http://openweathermap.org/img/wn/01d.png') no-repeat;
 }
 
-ul#hourlyContainer li.atmosphere {
+ul#hourlyContainer li.atmosphere, ul#dailyContainer li.atmosphere {
   background: url('http://openweathermap.org/img/wn/50d.png') no-repeat;
 }
 
-ul#hourlyContainer li.clouds1{
+ul#hourlyContainer li.clouds1, ul#dailyContainer li.clouds1 {
   background: url('http://openweathermap.org/img/wn/02d.png') no-repeat;
 }
 
-ul#hourlyContainer li.clouds2 {
+ul#hourlyContainer li.clouds2, ul#dailyContainer li.clouds2 {
   background: url('http://openweathermap.org/img/wn/03d.png') no-repeat;
 }
 
-ul#hourlyContainer li.clouds3 {
+ul#hourlyContainer li.clouds3, ul#dailyContainer li.clouds3 {
   background: url('http://openweathermap.org/img/wn/04d.png') no-repeat;
-}
-
-/* Daily Display */
-#dailyContainer {
-  display: none;
 }
 
 
@@ -311,103 +365,222 @@ ul#hourlyContainer li.clouds3 {
   background: linear-gradient(201deg, rgba(28,54,73,1) 0%, rgba(16,22,27,1) 100%); 
 }
 
-#content.night #currentWeather ul li#city, 
-#content.night #currentWeather ul li#temp, 
-#content.night #currentWeather ul li#minMax,
-#content.night #currentWeather ul li#current,
-#content.night #currentWeather ul li#wind,
-#content.night #currentWeather ul li#feelsLike,
-#content.night #currentWeather ul li#humidity,
-#content.night #currentWeather ul li#uV,
-#content.night #currentWeather ul li#visibility,
-#content.night #currentWeather ul li#timeToSun,
-#content.night #hourlyCarousel #hourButton,
-#content.night #hourlyCarousel #hourButton.active,
-#content.night #hourlyCarousel #dayButton,
-#content.night #hourlyCarousel #dayButton.active,
-#content.night #hourlyCarousel ul#hourlyContainer,
-#content.night #hourlyCarousel ul#dailyContainer {
+.content.night .currentWeather ul li#city, 
+.content.night .currentWeather ul li#temp, 
+.content.night .currentWeather ul li#minMax,
+.content.night .currentWeather ul li#current,
+.content.night .currentWeather ul li#wind,
+.content.night .currentWeather ul li#feelsLike,
+.content.night .currentWeather ul li#humidity,
+.content.night .currentWeather ul li#uV,
+.content.night .currentWeather ul li#visibility,
+.content.night .currentWeather ul li#timeToSun,
+.content.night #hourlyCarousel #hourButton,
+.content.night #hourlyCarousel #hourButton.active,
+.content.night #hourlyCarousel #dayButton,
+.content.night #hourlyCarousel #dayButton.active,
+.content.night #hourlyCarousel ul#hourlyContainer,
+.content.night #hourlyCarousel ul#dailyContainer {
   color: #FFF;
 }
-#content.night #hourlyCarousel ul#hourlyContainer div#slideNav .dot.active,
-#content.night #hourlyCarousel #hourButton.active {
+.content.night #hourlyCarousel ul#hourlyContainer div#slideNav .dot.active,
+.content.night #hourlyCarousel #hourButton.active {
   color: rgb(68, 68, 68);
 }
 
+@media screen and (max-width: 1079px) {
+  .content {
+    width: 100%;
+  }
+}
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 809px) {
+
+  /* Current Weather Section */
+  #currentLeft {
+    width: 70%;
+  }
+
+  #city { 
+    font-size: 1.5em;
+  }
+
+  #currentLeft input {
+    width: 40%;
+  }
+
+  #temp {
+    font-size: 6.4em;
+  }
+
+  #current {
+    font-size: 2em;
+    margin: .5em 0;
+  }
+
+  #temp span {
+    font-size: .2em;
+  }
+
+  #wind {
+    font-size: 1.4em;
+  }
+
+  #currentRight {
+    width: 30%;
+  }
+
+  #hourlyContainer li span:nth-child(1), #dailyContainer li span:nth-child(1) {
+    font-size: .9rem;
+  }
+  
+  #hourlyContainer li span:nth-child(2), #dailyContainer li span:nth-child(2)  {
+    font-size: 1.5rem;
+    margin-top: 55px;
+  }
+  
+  #hourlyContainer li span:nth-child(3), #dailyContainer li span:nth-child(3)  {
+    font-size: .7rem;
+  }
+}
+
+@media screen and (max-width: 690px) {
+
+    /* Current Weather Section */
+    #currentLeft {
+      width: 68%;
+    }
+  
+    #city { 
+      font-size: 1.3em;
+    }
+  
+    #temp {
+      font-size: 5.4em;
+    }
+  
+    #current {
+      font-size: 1.4em;
+      margin: .5em 0;
+    }
+  
+    #wind {
+      font-size: .9em;
+    }
+  
+    #currentRight {
+      width: 32%;
+      font-size: .8em;
+    }
+  
 
   #hourlyContainer div.slide {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    
   }
-  #hourlyContainer div.slide li {
-    background-position: right center !important;
-    text-align: left;
-    height: 55px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+
+  #dailyContainer li, #hourlyContainer li {
+    height: 0;
+    flex-direction: row;
     align-items: center;
+    padding: 15px 0;
+    margin: 5px 0;
+    text-align: left;
+    background-position: center !important;
   }
   
-  #hourlyContainer li span.time {
-    width: 15%;
-    font-size: .6em !important;
-  }
-  
-  #hourlyContainer li span.temp {
-    width: 15% !important;
-    margin: 0;
-    display: flex;
-    font-size: .8em !important;
-  }
-  
-  #hourlyContainer li span.desc {
-    font-size: .8em !important;
-    width: 60%;
-  }
-  
-  #slideNav {
+  #dailyContainer li, #hourlyContainer li {
     width: 100%;
   }
+
+  #hourlyContainer li span:nth-child(1), #dailyContainer li span:nth-child(1) {
+    width: 30%;
+    font-size: .8rem;
+  }
+  
+  #hourlyContainer li span:nth-child(2), #dailyContainer li span:nth-child(2)  {
+    width: 45%;
+    font-size: 1.2rem;
+    margin-top: 0;
+    font-weight: 800;
+  }
+  
+  #hourlyContainer li span:nth-child(3), #dailyContainer li span:nth-child(3)  {
+    font-size: .9rem;
+    text-align: right;
+  }
+
+}
+
+@media screen and (max-width: 520px) {
+  .content {
+    padding: 1.5em;
+}
+
+  #currentLeft {
+    width: 65%;
+  }
+
+  #city { 
+    font-size: 1em;
+  }
+
+  #temp {
+    font-size: 5em;
+  }
+
+  #current {
+    font-size: 1em;
+  }
+
+  #wind {
+    font-size: .8em;
+  }
+
+  #currentRight {
+    width: 35%;
+    font-size: .7em;
+  }
+
+  #hourlyContainer li span:nth-child(1), #dailyContainer li span:nth-child(1) {
+    width: 50% !important;
+  }
+
 
   .thunderstormDay {
     background: url('http://openweathermap.org/img/wn/11d@2x.png') no-repeat;
   }
-  
+
   .drizzleDay {
     background: url('http://openweathermap.org/img/wn/09d@2x.png') no-repeat;
   }
-  
+
   .rainDay {
     background: url('http://openweathermap.org/img/wn/10d@2x.png') no-repeat;
   }
-  
+
   .snowDay {
     background: url('http://openweathermap.org/img/wn/13d@2x.png') no-repeat;
   }
-  
+
   .clearDay {
     background: url('http://openweathermap.org/img/wn/01d@2x.png') no-repeat;
   }
-  
+
   .atmosphereDay {
     background: url('http://openweathermap.org/img/wn/50d@2x.png') no-repeat;
   }
-  
+
   .clouds1Day {
     background: url('http://openweathermap.org/img/wn/02d@2x.png') no-repeat;
   }
-  
+
   .clouds2Day {
     background: url('http://openweathermap.org/img/wn/03d@2x.png') no-repeat;
   }
-  
+
   .clouds3Day {
     background: url('http://openweathermap.org/img/wn/04d@2x.png') no-repeat;
   }
-  
 }
+

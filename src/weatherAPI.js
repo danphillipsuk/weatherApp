@@ -1,17 +1,17 @@
 import { propertyOf } from "lodash";
 import { buildApp } from './index.js';
-import { timingCalcs } from './currentWeather/functions';
-import { next24hours } from './carousel/next24hours';
-import { sevenDays} from './carousel/sevenDays';
+// import { timingCalcs } from './currentWeather/functions';
+// import { next24hours } from './carousel/next24hours';
+// import { sevenDays} from './carousel/sevenDays';
 
 let today;
 let oneCall;
 
 
 async function getWeather (location) {
-
-  if (location == null) {
-    location = "London";
+  console.log(location)
+  if (!location) {
+    location = "Barcelona";
   }
 
   try {
@@ -25,31 +25,56 @@ async function getWeather (location) {
     const secondResponse = await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&APPID=5a75251970a67885f4e3d704fe65eed0`, { mode: 'cors' });
     oneCall = await secondResponse.json();
 
+    construct(today, oneCall);
+
   } catch(err) {
     console.log("Sorry, we're haviong trouble")
     console.log(err)
   }
 }
 
-getWeather("cape town").then(function () {
+  function construct (today, oneCall) {
 
-  const todaysWeatherFactory = (
-    city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust ) => {
-      return { city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust }
+    const todaysWeatherFactory = (
+      city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust ) => {
+        return { city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust }
+    }
+
+    let todaysForecast, hourlyArray, daily;
+  
+    todaysForecast = todaysWeatherFactory(today.name, today.sys.country, oneCall.current.weather[0].id, oneCall.current.weather[0].description, oneCall.current.temp, oneCall.daily[0].temp.max, oneCall.daily[0].temp.min,
+      oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.daily[1].sunrise, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust);
+  
+      hourlyArray = oneCall.hourly;
+      daily = oneCall.daily;
+
+      buildApp(todaysForecast, hourlyArray, daily);
+
   }
 
-  const todaysForecast = todaysWeatherFactory(today.name, today.sys.country, oneCall.current.weather[0].id, oneCall.current.weather[0].description, oneCall.current.temp, oneCall.daily[0].temp.max, oneCall.daily[0].temp.min,
-    oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.daily[1].sunrise, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust);
+getWeather();
+// getWeather().then(function () {
 
-    const hourlyArray = oneCall.hourly;
-    const daily = oneCall.daily;
-    
-  buildApp(todaysForecast);
-  next24hours(todaysForecast, hourlyArray, todaysForecast.timezone);
-  sevenDays(daily);
+//   const todaysWeatherFactory = (
+//     city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust ) => {
+//       return { city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust }
+//   }
 
-  return;
-})
+//   const todaysForecast = todaysWeatherFactory(today.name, today.sys.country, oneCall.current.weather[0].id, oneCall.current.weather[0].description, oneCall.current.temp, oneCall.daily[0].temp.max, oneCall.daily[0].temp.min,
+//     oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.daily[1].sunrise, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust);
+
+//     const hourlyArray = oneCall.hourly;
+//     const daily = oneCall.daily;
+
+//     // localStorage.setItem("today", JSON.stringify(todaysForecast));
+//     // localStorage.setItem("hours", JSON.stringify(hourlyArray));
+//     // localStorage.setItem("sevendays", JSON.stringify(daily));
+
+//   buildApp(todaysForecast, hourlyArray, todaysForecast.timezone, daily);
+
+
+//   return;
+// })
 
 export { getWeather }
 
