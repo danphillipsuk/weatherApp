@@ -2,15 +2,8 @@ import { dayFromSeconds } from '../currentWeather/functions';
 
 const sevenDays = (daily) => {
 
-  function empty(element) {
-    while(element.firstElementChild) {
-      element.firstElementChild.remove();
-    }
-  }
   let parent = document.getElementById("dailyContainer");
-empty(parent);
-  
-  // const daily = JSON.parse(localStorage.getItem("sevendays"));
+  parent.innerHTML='';
 
   daily.forEach((item, index) => {
 
@@ -50,7 +43,5 @@ empty(parent);
   })
 
 }
-
-
 
 export { sevenDays }

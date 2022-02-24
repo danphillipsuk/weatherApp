@@ -2,6 +2,7 @@ import format from 'date-fns/format'
 import windy from './assets/windy.png';
 import { timingCalcs, sunTimes, windDesc } from './functions';
 import { getWeather } from '../weatherAPI';
+import { create } from 'lodash';
 
 const currentWeatherSection = (todaysWeather) => {
 
@@ -64,14 +65,16 @@ const currentWeatherSection = (todaysWeather) => {
   min.innerText = todaysWeather.low;
   max.innerText = todaysWeather.high;
 
+  const currentWind1 = document.getElementById("wind");
+  currentWind1.innerHTML='';
   const windIcon = new Image();
   windIcon.src = windy;
   windIcon.alt = "Wind Icon";
-  const currentWind1 = document.getElementById("wind");
-
-  const currentWind = document.getElementById("windSpan");
+  
+  const currentWind = document.createElement("span");
+  currentWind.id = "windSpan";
   currentWind.innerText = windDesc(todaysWeather);
-  currentWind1.prepend(windIcon);
+  currentWind1.append(windIcon, currentWind);
 
   // Current weather description
   const currentWeath = document.getElementById("current");

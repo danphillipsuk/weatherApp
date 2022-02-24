@@ -1,17 +1,13 @@
 import { propertyOf } from "lodash";
 import { buildApp } from './index.js';
-// import { timingCalcs } from './currentWeather/functions';
-// import { next24hours } from './carousel/next24hours';
-// import { sevenDays} from './carousel/sevenDays';
 
 let today;
 let oneCall;
 
-
 async function getWeather (location) {
-  console.log(location)
+
   if (!location) {
-    location = "Barcelona";
+    location = "New York";
   }
 
   try {
@@ -34,7 +30,7 @@ async function getWeather (location) {
 }
 
   function construct (today, oneCall) {
-
+    console.log("constructor")
     const todaysWeatherFactory = (
       city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust ) => {
         return { city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust }
