@@ -1,8 +1,7 @@
 import { propertyOf } from "lodash";
-import { buildApp } from './index.js';
+import { construct } from './factory';
 
-let today;
-let oneCall;
+let today, oneCall;
 
 async function getWeather (location) {
 
@@ -23,56 +22,20 @@ async function getWeather (location) {
 
     construct(today, oneCall);
 
+
   } catch(err) {
     console.log("Sorry, we're haviong trouble")
     console.log(err)
   }
 }
 
-  function construct (today, oneCall) {
-    console.log("constructor")
-    const todaysWeatherFactory = (
-      city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust ) => {
-        return { city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust }
-    }
-
-    let todaysForecast, hourlyArray, daily;
-  
-    todaysForecast = todaysWeatherFactory(today.name, today.sys.country, oneCall.current.weather[0].id, oneCall.current.weather[0].description, oneCall.current.temp, oneCall.daily[0].temp.max, oneCall.daily[0].temp.min,
-      oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.daily[1].sunrise, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust);
-  
-      hourlyArray = oneCall.hourly;
-      daily = oneCall.daily;
-
-      buildApp(todaysForecast, hourlyArray, daily);
-
-  }
-
 getWeather();
-// getWeather().then(function () {
-
-//   const todaysWeatherFactory = (
-//     city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust ) => {
-//       return { city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, tomorrowSunrise, windDeg, windSpeed, windGust }
-//   }
-
-//   const todaysForecast = todaysWeatherFactory(today.name, today.sys.country, oneCall.current.weather[0].id, oneCall.current.weather[0].description, oneCall.current.temp, oneCall.daily[0].temp.max, oneCall.daily[0].temp.min,
-//     oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.daily[1].sunrise, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust);
-
-//     const hourlyArray = oneCall.hourly;
-//     const daily = oneCall.daily;
-
-//     // localStorage.setItem("today", JSON.stringify(todaysForecast));
-//     // localStorage.setItem("hours", JSON.stringify(hourlyArray));
-//     // localStorage.setItem("sevendays", JSON.stringify(daily));
-
-//   buildApp(todaysForecast, hourlyArray, todaysForecast.timezone, daily);
-
-
-//   return;
-// })
 
 export { getWeather }
+
+
+// getWeather().then(function () {})
+
 
 
 
