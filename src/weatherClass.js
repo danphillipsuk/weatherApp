@@ -2,7 +2,7 @@ import format from 'date-fns/format'
 
 class WeatherClass {
 
-  constructor(city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, windDeg, windSpeed, windGust, hourlyArray) {
+  constructor(city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, windDeg, windSpeed, windGust, hourlyArray, dailyArray) {
     this.city = city; 
     this.country = country;
     this.weatherID = weatherID;
@@ -21,6 +21,7 @@ class WeatherClass {
     this.windSpeed = windSpeed;
     this.windGust = windGust;
     this.hourlyArray = hourlyArray;
+    this.dailyArray = dailyArray;
   }
 
   // Calculate local sunrise time
@@ -74,7 +75,7 @@ class WeatherClass {
     return wind;
   }
 
-  // Determine weather ID to serve correct icon
+  // Determine weather ID to serve correct icon on main display
   weatherid () {
     if (this.weatherID >= 200 && this.weatherID <= 232) { return 'thunderstorms'; }
     else if (this.weatherID >= 300 && this.weatherID <= 321 || this.weatherID >= 520 && this.weatherID <= 531 ) { return 'drizzle'; }
@@ -87,7 +88,7 @@ class WeatherClass {
     else if (this.weatherID >= 803 && this.weatherID <= 804) { return 'clouds3'; }
   }
 
-  // Methods for 24 hour weather section
+  // Methods for 24 hour and daily weather section
   twentyFourHourTabs (num) {
     const rawTime = this.hourlyArray[1].dt + this.timezone + num;
     const newTime = new Date(rawTime * 1000);
@@ -112,6 +113,12 @@ class WeatherClass {
     else if (num === 801) { return 'clouds1'; }
     else if (num === 802) { return 'clouds2'; }
     else if (num >= 803 && num <= 804) { return 'clouds3'; }
+  }
+
+  dayFromSeconds (num) {
+    const readableDate = new Date(num * 1000);
+    const displayDate = format(new Date(readableDate), 'EEEE')
+    return displayDate;
   }
 
 }

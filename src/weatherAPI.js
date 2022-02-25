@@ -1,5 +1,6 @@
 import { propertyOf } from "lodash";
-import { construct } from './factory';
+import { WeatherClass }  from './weatherClass';
+import { buildApp } from './index.js';
 
 let today, oneCall;
 
@@ -20,9 +21,13 @@ async function getWeather (location) {
     const secondResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&APPID=5a75251970a67885f4e3d704fe65eed0`, { mode: 'cors' });
     oneCall = await secondResponse.json();
 
-    construct(today, oneCall);
+    // construct(today, oneCall);
 
-
+    const weatherData = new WeatherClass (today.name, today.sys.country, oneCall.current.weather[0].id, oneCall.current.weather[0].description, oneCall.current.temp, oneCall.daily[0].temp.max, oneCall.daily[0].temp.min,
+      oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust, oneCall.hourly, oneCall.daily);
+  
+    buildApp(weatherData);
+  
   } catch(err) {
     console.log("Sorry, we're haviong trouble")
     console.log(err)

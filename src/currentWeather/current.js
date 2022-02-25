@@ -63,7 +63,6 @@ const currentWeatherSection = (todaysData) => {
   const sunsetEl = document.getElementById("ssSpan");
   sunsetEl.innerText = todaysData.sunSet();
 
-
 }
 
 export { currentWeatherSection }
