@@ -1,6 +1,11 @@
 import { initiateSlides } from '../currentWeather/functions';
 
 const next24hours = (hourlyData) => {
+  const headline = document.createElement("h4");
+  headline.innerText = "Next 24 Hours";
+  const hourlyContainer = document.getElementById("hourlyContainer");
+  hourlyContainer.prepend(headline)
+
 
   // 24 hour tabbed menu hours 
   const firstTabInsert = document.getElementById("firstSlide");
@@ -28,7 +33,6 @@ const next24hours = (hourlyData) => {
         <span class="desc">${hourlyData.hourlyArray[relIndex].weather[0].description}</span>`;
 
       eightHourContainer.append(singleHour);
-      const hourlyContainer = document.getElementById("hourlyContainer");
       hourlyContainer.appendChild(eightHourContainer);
     })
   

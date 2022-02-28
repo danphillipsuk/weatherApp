@@ -2,7 +2,8 @@ import format from 'date-fns/format'
 
 class WeatherClass {
 
-  constructor(city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, windDeg, windSpeed, windGust, hourlyArray, dailyArray) {
+  constructor(currentTime, city, country, weatherID, description, temperature, high, low, feelsLike, humidity, uvIndex, visibility, sunrise, sunset, timezone, windDeg, windSpeed, windGust, hourlyArray, dailyArray) {
+    this.currentTime = currentTime;
     this.city = city; 
     this.country = country;
     this.weatherID = weatherID;
@@ -116,9 +117,22 @@ class WeatherClass {
   }
 
   dayFromSeconds (num) {
-    const readableDate = new Date(num * 1000);
-    const displayDate = format(new Date(readableDate), 'EEEE')
-    return displayDate;
+    const readableDay = new Date(num * 1000);
+    const readableDate = format(new Date(readableDay), 'do MMM');
+    const displayDay = format(new Date(readableDay), 'EEEE');
+    return displayDay;
+  }
+
+  dateFromSeconds (num) {
+    const readableDay = new Date(num * 1000);
+    const readableDate = format(new Date(readableDay), 'do MMM');
+    return readableDate;
+  }
+
+  todaysDate (num) {
+    const readableDay = new Date((num + this.timezone) * 1000);
+    const readableDate = format(new Date(readableDay), 'h:mm aaa EEEE do MMMM yyyy');
+    return readableDate;
   }
 
 }

@@ -1,30 +1,30 @@
 import windy from './assets/windy.png';
+import format from 'date-fns/format'
 
-const currentWeatherSection = (todaysData) => {
-  
+const currentWeatherSection = (today) => {
+
   const overallWeather = document.querySelector(".currentWeather");
   overallWeather.removeAttribute("class");
   overallWeather.classList.add("currentWeather");
-  overallWeather.classList.add(`${todaysData.weatherid()}${todaysData.nightOrDay()}`);
+  overallWeather.classList.add(`${today.weatherid()}${today.nightOrDay()}`);
 
   // Date
-  // const today = format(todaysDate, 'eeee do LLLL yyyy');
-  // const date = document.getElementById("date");
-  // date.innerText = today;
+  const date = document.getElementById("date");
+  date.innerText = today.todaysDate(today.currentTime);
 
   // City
   const userCity = document.getElementById("city");
-  userCity.innerText = `${todaysData.city}, ${todaysData.country}`;
+  userCity.innerText = `${today.city}, ${today.country}`;
 
   // Current temp
   const currentTemp = document.getElementById("temp");
-  currentTemp.innerHTML = `${Math.round(todaysData.temperature)}<span>&#8451;</span>`;
+  currentTemp.innerHTML = `${Math.round(today.temperature)}<span>&#8451;</span>`;
 
   // Daily High and low
   const min = document.getElementById("min");
   const max = document.getElementById("max");
-  min.innerText = todaysData.low;
-  max.innerText = todaysData.high;
+  min.innerText = today.low;
+  max.innerText = today.high;
 
   const currentWind1 = document.getElementById("wind");
   currentWind1.innerHTML='';
@@ -34,34 +34,34 @@ const currentWeatherSection = (todaysData) => {
   
   const currentWind = document.createElement("span");
   currentWind.id = "windSpan";
-  currentWind.innerText = todaysData.windDesc();
+  currentWind.innerText = today.windDesc();
   currentWind1.append(windIcon, currentWind);
 
   // Current weather description
   const currentWeath = document.getElementById("current");
-  currentWeath.innerText = `Currently ${todaysData.description}`;
+  currentWeath.innerText = `Currently ${today.description}`;
 
   // Feels like temp
   const feelsLike = document.getElementById("flSpan");
-  feelsLike.innerHTML = `${Math.round(todaysData.feelsLike)}&#8451;`;
+  feelsLike.innerHTML = `${Math.round(today.feelsLike)}&#8451;`;
 
   // UV index
   const uvIndex = document.getElementById("uvSpan");
-  uvIndex.innerText = todaysData.uvIndex;
+  uvIndex.innerText = today.uvIndex;
 
   // Visibility
   const visibility = document.getElementById("vSpan");
-  visibility.innerHTML = `${todaysData.visibility}m`
+  visibility.innerHTML = `${today.visibility}m`
 
   // Humidity
   const humidity = document.getElementById("humSpan");
-  humidity.innerText = `${todaysData.humidity}%`
+  humidity.innerText = `${today.humidity}%`
 
   const sunriseEl = document.getElementById("srSpan");
-  sunriseEl.innerText = todaysData.sunRise();
+  sunriseEl.innerText = today.sunRise();
 
   const sunsetEl = document.getElementById("ssSpan");
-  sunsetEl.innerText = todaysData.sunSet();
+  sunsetEl.innerText = today.sunSet();
 
 }
 

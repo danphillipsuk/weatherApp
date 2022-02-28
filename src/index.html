@@ -15,16 +15,14 @@
   <div class="content">
 
     <section class="currentWeather">
-      <ul id="currentLeft">
+
+      <ul id="currentOverview">
+        <li id="date"></li>
         <li id="city"></li>
-        <li><input type="text" name="location" placeholder="Change location..."><button id="changeLocation">Go</button></li>
         <li id="temp"><span>&#8451;</span></li>
         <li id="feelsLike">Feels Like <span id="flSpan"></span></li>
         <li id="current"></li>
         <li id="wind"></li>
-
-      </ul>
-      <ul id="currentRight">
         <li>DAILY LOW <span id="min"></span></li>
         <li>DAILY HIGH <span id="max"></span></li>
         <li>HUMIDITY<span id="humSpan"></span></li>
@@ -32,15 +30,8 @@
         <li>VISIBILITY<span id="vSpan"></span></li>
         <li>SUNRISE<span id="srSpan"></span></li>
         <li>SUNSET<span id="ssSpan"></span></li>
+
       </ul>
-    </section>
-
-    <section class="futureForecast">
-
-      <div class="buttonContainer">
-        <button id="hourButton" class="active">Next 24 Hours</button>
-        <button id="dayButton">Next 7 Days</button>
-      </div>
 
       <ul id="hourlyContainer">
 
@@ -55,11 +46,15 @@
         <div class="slide" id="slide17"></div>
 
       </ul>
+      <div><input type="text" name="location" placeholder="Change location..."><button id="changeLocation">Go</button></div>
+    </section>
+
+
 
       <ul id="dailyContainer">
       </ul>
 
-    </section>
+
 
   </div>
 </body>

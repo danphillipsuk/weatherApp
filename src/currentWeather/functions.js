@@ -46,25 +46,25 @@ document.getElementById('changeLocation').addEventListener("click", () => {
 
 
 
-const hourly = document.getElementById("hourlyContainer");
-const daily = document.getElementById("dailyContainer");
-const hourButton = document.getElementById("hourButton");
-const dayButton = document.getElementById("dayButton");
+// const hourly = document.getElementById("hourlyContainer");
+// const daily = document.getElementById("dailyContainer");
+// const hourButton = document.getElementById("hourButton");
+// const dayButton = document.getElementById("dayButton");
 
-document.getElementById('dayButton').addEventListener("click", () => {
-  hourly.style.display ="none";
-  daily.style.display = "flex";
-  dayButton.classList.add("active");
-  hourButton.classList.remove("active");
-})
+// document.getElementById('dayButton').addEventListener("click", () => {
+//   hourly.style.display ="none";
+//   daily.style.display = "flex";
+//   dayButton.classList.add("active");
+//   hourButton.classList.remove("active");
+// })
 
-document.getElementById('hourButton').addEventListener("click", () => {
-  hourly.style.display ="flex";
-  daily.style.display = "none";
-  dayButton.classList.remove("active");
-  hourButton.classList.add("active");
+// document.getElementById('hourButton').addEventListener("click", () => {
+//   hourly.style.display ="flex";
+//   daily.style.display = "none";
+//   dayButton.classList.remove("active");
+//   hourButton.classList.add("active");
 
-})
+// })
 
 
 
