@@ -1,6 +1,5 @@
 import { getWeather } from '../weatherAPI';
 
-
 function initiateSlides (slideIndex) {
 
   showSlides(slideIndex);
@@ -20,7 +19,6 @@ function initiateSlides (slideIndex) {
       slides[slideIndex-1].style.display = "flex";
       dots[slideIndex-1].className += " active";
     } 
-
 
     document.getElementById('firstSlide').addEventListener("click", () => {
       showSlides(slideIndex = 1);
@@ -45,26 +43,6 @@ document.getElementById('changeLocation').addEventListener("click", () => {
 })
 
 
-
-// const hourly = document.getElementById("hourlyContainer");
-// const daily = document.getElementById("dailyContainer");
-// const hourButton = document.getElementById("hourButton");
-// const dayButton = document.getElementById("dayButton");
-
-// document.getElementById('dayButton').addEventListener("click", () => {
-//   hourly.style.display ="none";
-//   daily.style.display = "flex";
-//   dayButton.classList.add("active");
-//   hourButton.classList.remove("active");
-// })
-
-// document.getElementById('hourButton').addEventListener("click", () => {
-//   hourly.style.display ="flex";
-//   daily.style.display = "none";
-//   dayButton.classList.remove("active");
-//   hourButton.classList.add("active");
-
-// })
 
 
 

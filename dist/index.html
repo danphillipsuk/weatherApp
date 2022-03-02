@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Is it raining? I hadn't noticed!</title>
+  <title>Weather or not</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"> 
@@ -23,13 +23,14 @@
         <li id="feelsLike">Feels Like <span id="flSpan"></span></li>
         <li id="current"></li>
         <li id="wind"></li>
-        <li>DAILY LOW <span id="min"></span></li>
-        <li>DAILY HIGH <span id="max"></span></li>
-        <li>HUMIDITY<span id="humSpan"></span></li>
-        <li>UV INDEX<span id="uvSpan"></span></li>
-        <li>VISIBILITY<span id="vSpan"></span></li>
-        <li>SUNRISE<span id="srSpan"></span></li>
-        <li>SUNSET<span id="ssSpan"></span></li>
+
+        <ul id="supplemental">
+          <li>DAILY LOW <span id="min"></span>DAILY HIGH <span id="max"></span></li>
+          <li>HUMIDITY<span id="humSpan"></span></li>
+          <li>UV INDEX<span id="uvSpan"></span></li>
+          <li>VISIBILITY<span id="vSpan"></span></li>
+          <li>SUNRISE<span id="srSpan"></span>SUNSET<span id="ssSpan"></span></li>
+        </ul>
 
       </ul>
 
@@ -46,6 +47,9 @@
         <div class="slide" id="slide17"></div>
 
       </ul>
+
+      
+
       <div><input type="text" name="location" placeholder="Change location..."><button id="changeLocation">Go</button></div>
     </section>
 

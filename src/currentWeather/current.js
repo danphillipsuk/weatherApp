@@ -1,5 +1,4 @@
 import windy from './assets/windy.png';
-import format from 'date-fns/format'
 
 const currentWeatherSection = (today) => {
 

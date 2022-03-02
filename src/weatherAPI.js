@@ -32,15 +32,6 @@ async function getWeather (location) {
   }
 }
 
-
-
-// getWeather().then(function () {
-//   const weatherData = new WeatherClass (today.name, today.sys.country, oneCall.current.weather[0].id, oneCall.current.weather[0].description, oneCall.current.temp, oneCall.daily[0].temp.max, oneCall.daily[0].temp.min, oneCall.current.feels_like, oneCall.current.humidity, oneCall.current.uvi, oneCall.current.visibility, oneCall.current.sunrise, oneCall.current.sunset, oneCall.timezone_offset, oneCall.current.wind_deg, oneCall.current.wind_speed, oneCall.current.wind_gust, oneCall.hourly, oneCall.daily);
-
-//   buildApp(weatherData);
-
-// })
-
 getWeather();
 
 export { getWeather }

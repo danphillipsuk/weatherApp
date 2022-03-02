@@ -6,19 +6,11 @@ import { sevenDays } from './carousel/nextSevenDays';
 
 const buildApp = (weatherData) => {
 
-//   const buildApp = () => {  
-  // localStorage.setItem("weatherData", JSON.stringify(weatherData));
-  // let weatherData = JSON.parse(localStorage.getItem("weatherData"));
-
   currentWeatherSection(weatherData);
   sevenDays(weatherData);
   next24hours(weatherData);
 
 }
-
-buildApp();
-
-
 
 
 export { buildApp }
